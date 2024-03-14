@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: mmcls
+Version: 1.0.0rc6
+Summary: OpenMMLab Image Classification Toolbox and Benchmark
+Home-page: https://github.com/open-mmlab/mmclassification
+Author: MMClassification Contributors
+Author-email: openmmlab@gmail.com
+License: Apache License 2.0
+Keywords: computer vision,image classification
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: all
+Provides-Extra: tests
+Provides-Extra: optional
+Provides-Extra: mim
+License-File: LICENSE
+
+UNKNOWN
+

@@ -1,0 +1,3 @@
+提取特征更改：
+    1.BEPT/Model/mmselfsup/mmselfsup/apis/inference.py
+    2.BEPT/Model/mmselfsup/mmselfsup/models/algorithms/beit.py

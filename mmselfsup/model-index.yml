@@ -1,0 +1,25 @@
+Import:
+  - configs/selfsup/byol/metafile.yml
+  - configs/selfsup/deepcluster/metafile.yml
+  - configs/selfsup/densecl/metafile.yml
+  - configs/selfsup/mocov1/metafile.yml
+  - configs/selfsup/mocov2/metafile.yml
+  - configs/selfsup/mocov3/metafile.yml
+  - configs/selfsup/npid/metafile.yml
+  - configs/selfsup/odc/metafile.yml
+  - configs/selfsup/relative_loc/metafile.yml
+  - configs/selfsup/rotation_pred/metafile.yml
+  - configs/selfsup/simclr/metafile.yml
+  - configs/selfsup/simsiam/metafile.yml
+  - configs/selfsup/swav/metafile.yml
+  - configs/selfsup/mae/metafile.yml
+  - configs/selfsup/simmim/metafile.yml
+  - configs/selfsup/barlowtwins/metafile.yml
+  - configs/selfsup/cae/metafile.yml
+  - configs/selfsup/maskfeat/metafile.yml
+  - configs/selfsup/beit/metafile.yml
+  - configs/selfsup/milan/metafile.yml
+  - configs/selfsup/beitv2/metafile.yml
+  - configs/selfsup/eva/metafile.yml
+  - configs/selfsup/mixmim/metafile.yml
+  - configs/selfsup/pixmim/metafile.yml
