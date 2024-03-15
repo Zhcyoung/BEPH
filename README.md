@@ -3,7 +3,7 @@
 
 Official repo for [XXXXX](https://www.XXXX), which is based on [BEiTv2](https://github.com/microsoft/unilm/tree/master/beit2):
 
-*It is worth noting that the BEiT implementation we use comes from mmpretrain[https://github.com/open-mmlab/mmpretrain].
+*It is worth noting that the BEiT implementation we use comes from mmselfsup[https://github.com/open-mmlab/mmselfsup].
 
 <img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/overflow2.jpg" alt="overflow2" style="zoom: 50%;" />
 
