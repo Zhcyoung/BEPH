@@ -317,12 +317,27 @@ Analagously, we also extend the [CLAM](https://github.com/mahmoodlab/CLAM/tree/m
 Train Command ：
 
 ```
-
+python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
+--model_type clam_sb \
+--task tcga_crc_subtype \
+--max_epoch 20 \
+--k 5 \
+--k_start 0 \
+--lr  2e-4 \
+--seed 123 \
+--results_dir ./RESULTS/tcga_crc_survival\
+--early_stopping
+# --pretrain_4k vit4k_xs_dino
+# 1e-4
 ```
 
 For evaluation：
 
 ```
+python eval_survival.py --data_root_dir DATA_DIRECTORY/ \
+--model_type clam_sb \
+--task tcga_crc_subtype \
+--results_dir ./RESULTS/tcga_crc_survival/test
 
 ```
 
