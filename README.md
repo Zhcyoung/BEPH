@@ -3,9 +3,9 @@
 
 Official repo for [XXXXX](https://www.XXXX), which is based on [BEiTv2](https://github.com/microsoft/unilm/tree/master/beit2):
 
-*It is worth noting that the BEiT implementation we use comes from mmpretrain[https://github.com/open-mmlab/mmpretrain].
+*It is worth noting that the BEiT implementation we use comes from mmselfsup[https://github.com/open-mmlab/mmselfsup].
 
-<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/overflow2.jpg" alt="overflow2" style="zoom: 1%;" />
+<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/overflow2.jpg" alt="overflow2" style="zoom: 50%;" />
 
 ## Key Features
 
@@ -25,9 +25,13 @@ Install mmselfsup
 conda create -n BEPH python=3.9 -y
 conda activate BEPH
 conda install pytorch torchvision -c pytorch
-git clone https://github.com/open-mmlab/mmpretrain.git
-cd mmpretrain
-pip install -U openmim && mim install -e .
+git clone https://github.com/Zhcyoung/BEPH_new.git
+pip install -U openmim
+mim install mmengine
+mim install 'mmcv>=2.0.0'
+cd mmclassification && mim install -e .
+cd .. && cd mmselfsup && mim install -e .
+
 ```
 
 Extract backbone weights to apply to downstream tasks, or download the weight directly [],[]:
@@ -87,8 +91,7 @@ And generate a pre-train.txt containing the filename:
 
 And then modify the pre-train config file:beitv2_vit.py 
 
-
-<code>   
+```
 train_dataloader = dict(
     batch_size=256,
     collate_fn=dict(type='default_collate'),
@@ -106,7 +109,9 @@ train_dataloader = dict(
                 type='ColorJitter'),
             ... ...,
             )
-</code> 
+```
+
+
 
 
 Pre-training Command:
@@ -167,14 +172,49 @@ Following  pretraining and pre-extracting instance-level features using ViT-base
 
 
 
-Feature extraction：
+Directory tree:
 
 ```
 DATA_DIRECTORY/
 	├── slide_1.svs
 	├── slide_2.svs
 	└── ...
+PATCH_DIRECTORY/
+	├── masks
+		├── slide_1.jpg
+		└── ...
+	├── patches
+		├── slide_1.h5
+		└── ...
+	├── stitches
+		├── slide_1.jpg
+		└── ...
+	├── process_list_autogen.csv
+	└── Step_2.csv
+FEATURES_DIRECTORY/
+	├── h5_files
+		├── slide_1.h5
+		└── ...
+	└── pt_files
+		├── slide_1.pt
+		└── ...
+DATASET_CSV/
+	└──label.csv
+SPLITS/
+	├── splits_0.csv
+	└── ...
+RESULTS/
+	├── tcga_brca_subtype
+		├── s_0_checkpoint.pt
+		├── splits_0.csv
+		├── ...
+		└──	summary.csv
+	└── ...
 ```
+
+
+
+Feature extraction：
 
 ```
 python create_patches_fp.py \
@@ -191,13 +231,15 @@ python create_patches_fp.py \
 import os 
 import pandas as pd 
 
-df = pd.read_csv('./PATCH_DIRECTORY/process_list_autogen.csv') # 这个是上一步生成的文件
+df = pd.read_csv('./PATCH_DIRECTORY/process_list_autogen.csv') # This csv is generated in the first step
 ids1 = [i[:-4] for i in df.slide_id]
 ids2 = [i[:-3] for i in os.listdir('./PATCH_DIRECTORY/patch_splits/patches/')]
 df['slide_id'] = ids1
 ids = df['slide_id'].isin(ids2)
 sum(ids)
 df.loc[ids].to_csv('./PATCH_DIRECTORY/patch_splits/Step_2.csv',index=False)
+
+
 ```
 
 Get feature:  [histopathological image DINO feature](https://github.com/mahmoodlab/HIPT/blob/master/HIPT_4K/Checkpoints/vit256_small_dino.pth)
@@ -207,7 +249,7 @@ Get feature:  [histopathological image DINO feature](https://github.com/mahmoodl
 #histopathological image DINO feature: extract_features_dino.py
 #BEPH feature: extract_features_BEPH.py
 
-python extract_features_fp.py \ 
+python extract_features_BEPH.py \ 
 --data_h5_dir ./FEATURE_DIRECTORY/patch_splits/ \
 --data_slide_dir ./DATA_DIRECTORY/ \
 --csv_path ./PATCH_DIRECTORY/patch_splits/Step_2.csv \
@@ -215,17 +257,74 @@ python extract_features_fp.py \
 --batch_size 2000 \
 --slide_ext .svs
 
+
+
+<<<<<<< HEAD
+=======
+```
+
+Filter out the slides that cannot extract features:
+
+```
+df = pd.read_csv(wsi_path[:-3]+'dataset_csv/label.csv')
+df = df[['case_id','slide_id','slide_name','oncotree_code']]
+ids1 = [i for i in df.slide_name]
+ids2 = [i[:-3] for i in os.listdir(wsi_path[:-3]+'test_time_FEATURES_DIRECTORY/pt_files')]
+ids = df['slide_name'].isin(ids2)
+df = df.loc[ids]
+df.columns = ['case_id','slide_id','slide_name','label']
+df.to_csv(wsi_path[:-3]+'DATASET_CSV/datasets.csv',index=False)
+>>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
 ```
 
 Train Command （Take the clam_sb model for breast cancer subtypes classification as an example）:
 
 ```
+<<<<<<< HEAD
+df = pd.read_csv(wsi_path[:-3]+'dataset_csv/label.csv')
+df = df[['case_id','slide_id','slide_name','oncotree_code']]
+ids1 = [i for i in df.slide_name]
+ids2 = [i[:-3] for i in os.listdir(wsi_path[:-3]+'test_time_FEATURES_DIRECTORY/pt_files')]
+ids = df['slide_name'].isin(ids2)
+df = df.loc[ids]
+df.columns = ['case_id','slide_id','slide_name','label']
+df.to_csv(wsi_path[:-3]+'dataset_csv/datasets.csv',index=False)
+=======
+%run CLAM_SB_BEPH.py \
+--data_root_dir   DATA_DIRECTORY/ \
+--model_type   clam_sb \
+--task tcga_brca_subtype \
+--splits  SPLITS/ \
+--lr 2e-4 \
+--seed 123 \
+--feature_path  FEATURES_DIRECTORY/
+--csv_path DATASET_CSV/datasets.csv \
+--k 10 \
+--k_start 0 \
+--results_dir  RESULTS/tcga_brca_subtype
 
+
+[ "python",   "./CLAM_Feature/CLAM_SB_BEPH.py",  "--data_root_dir",wsi_path[:-3]+"test_time_FEATURES_DIRECTORY",  "--model_type", "clam_sb","--task","Fine_Tuning","--k_start","0","--k",kstart,"--splits",wsi_path[:-3]+ "splits", "--lr",  "2e-4",  "--seed","47","--csv_path",wsi_path[:-3]+ "/dataset_csv/datasets.csv","--results_dir",wsi_path[:-3]+ str(jobid).split('_')[1]+"/test_result","--early_stopping"]
+>>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
 ```
 
 For evaluation：
 
 ```
+python eval.py --data_root_dir  DATA_DIRECTORY/ \
+--model_type clam_sb \
+--task tcga_brca_subtype \
+--splits  SPLITS/ \
+--feature_path FEATURES_DIRECTORY/ \
+--weights_path ../weights/tcga_brca_subtype/ \
+--csv_path DATASET_CSV/label.csv \
+--k 10 \
+--k_start 0 \
+<<<<<<< HEAD
+--lr  2e-4 \
+=======
+>>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
+--results_dir RESULTS/tcga_brca_subtype
 
 ```
 
@@ -236,12 +335,27 @@ Analagously, we also extend the [CLAM](https://github.com/mahmoodlab/CLAM/tree/m
 Train Command ：
 
 ```
-
+python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
+--model_type clam_sb \
+--task tcga_crc_subtype \
+--max_epoch 20 \
+--k 5 \
+--k_start 0 \
+--lr  2e-4 \
+--seed 123 \
+--results_dir ./RESULTS/tcga_crc_survival\
+--early_stopping
+# --pretrain_4k vit4k_xs_dino
+# 1e-4
 ```
 
 For evaluation：
 
 ```
+python eval_survival.py --data_root_dir DATA_DIRECTORY/ \
+--model_type clam_sb \
+--task tcga_crc_subtype \
+--results_dir ./RESULTS/tcga_crc_survival/test
 
 ```
 
