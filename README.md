@@ -317,7 +317,7 @@ Analagously, we also extend the [CLAM](https://github.com/mahmoodlab/CLAM/tree/m
 Train Command ：
 
 ```
-python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
+python ./survival/CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
 --model_type clam_sb \
 --task tcga_crc_subtype \
 --max_epoch 20 \
@@ -334,7 +334,7 @@ python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
 For evaluation：
 
 ```
-python eval_survival.py --data_root_dir DATA_DIRECTORY/ \
+python ./survival/eval_survival.py --data_root_dir DATA_DIRECTORY/ \
 --model_type clam_sb \
 --task tcga_crc_subtype \
 --results_dir ./RESULTS/tcga_crc_survival/test
