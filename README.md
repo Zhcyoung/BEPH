@@ -59,7 +59,7 @@ We downloaded diagnostic whole-slide images (WSIs) for 32 cancer types using [th
 
 
 
-<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/采样2.png" alt="采样2" style="zoom: 1%;" />
+<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/%E9%87%87%E6%A0%B72.png" alt="采样2" style="zoom: 1%;" />
 
 For pre-training,each cancer type is organized as its own folder in `TCGA_ROOT_DIR`, which additionally contains the following subfolders: 
 
@@ -259,8 +259,6 @@ python extract_features_BEPH.py \
 
 
 
-<<<<<<< HEAD
-=======
 ```
 
 Filter out the slides that cannot extract features:
@@ -274,22 +272,11 @@ ids = df['slide_name'].isin(ids2)
 df = df.loc[ids]
 df.columns = ['case_id','slide_id','slide_name','label']
 df.to_csv(wsi_path[:-3]+'DATASET_CSV/datasets.csv',index=False)
->>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
 ```
 
 Train Command （Take the clam_sb model for breast cancer subtypes classification as an example）:
 
 ```
-<<<<<<< HEAD
-df = pd.read_csv(wsi_path[:-3]+'dataset_csv/label.csv')
-df = df[['case_id','slide_id','slide_name','oncotree_code']]
-ids1 = [i for i in df.slide_name]
-ids2 = [i[:-3] for i in os.listdir(wsi_path[:-3]+'test_time_FEATURES_DIRECTORY/pt_files')]
-ids = df['slide_name'].isin(ids2)
-df = df.loc[ids]
-df.columns = ['case_id','slide_id','slide_name','label']
-df.to_csv(wsi_path[:-3]+'dataset_csv/datasets.csv',index=False)
-=======
 %run CLAM_SB_BEPH.py \
 --data_root_dir   DATA_DIRECTORY/ \
 --model_type   clam_sb \
@@ -305,7 +292,6 @@ df.to_csv(wsi_path[:-3]+'dataset_csv/datasets.csv',index=False)
 
 
 [ "python",   "./CLAM_Feature/CLAM_SB_BEPH.py",  "--data_root_dir",wsi_path[:-3]+"test_time_FEATURES_DIRECTORY",  "--model_type", "clam_sb","--task","Fine_Tuning","--k_start","0","--k",kstart,"--splits",wsi_path[:-3]+ "splits", "--lr",  "2e-4",  "--seed","47","--csv_path",wsi_path[:-3]+ "/dataset_csv/datasets.csv","--results_dir",wsi_path[:-3]+ str(jobid).split('_')[1]+"/test_result","--early_stopping"]
->>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
 ```
 
 For evaluation：
@@ -320,10 +306,6 @@ python eval.py --data_root_dir  DATA_DIRECTORY/ \
 --csv_path DATASET_CSV/label.csv \
 --k 10 \
 --k_start 0 \
-<<<<<<< HEAD
---lr  2e-4 \
-=======
->>>>>>> 61cbf9173a01c68c5c4a37efe3bc85ee0a7a1c6e
 --results_dir RESULTS/tcga_brca_subtype
 
 ```
@@ -335,7 +317,7 @@ Analagously, we also extend the [CLAM](https://github.com/mahmoodlab/CLAM/tree/m
 Train Command ：
 
 ```
-python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
+python ./survival/CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
 --model_type clam_sb \
 --task tcga_crc_subtype \
 --max_epoch 20 \
@@ -352,12 +334,9 @@ python ./CLAM_survival_BEPH.py --data_root_dir DATA_DIRECTORY/ \
 For evaluation：
 
 ```
-python eval_survival.py --data_root_dir DATA_DIRECTORY/ \
+python ./survival/eval_survival.py --data_root_dir DATA_DIRECTORY/ \
 --model_type clam_sb \
 --task tcga_crc_subtype \
 --results_dir ./RESULTS/tcga_crc_survival/test
 
 ```
-
-
-
