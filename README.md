@@ -1,7 +1,7 @@
 # BEPH
 
 
-Official repo for [XXXXX](https://www.XXXX), which is based on [BEiTv2](https://github.com/microsoft/unilm/tree/master/beit2):
+Official repo for [BEPH](https://github.com/Zhcyoung/BEPH/), which is based on [BEiTv2](https://github.com/microsoft/unilm/tree/master/beit2):
 
 *It is worth noting that the BEiT implementation we use comes from mmselfsup[https://github.com/open-mmlab/mmselfsup].
 
@@ -9,7 +9,7 @@ Official repo for [XXXXX](https://www.XXXX), which is based on [BEiTv2](https://
 
 ## Key Features
 
-This is the repo for the paper XXXXXXX led by ZhaochangYang and XXXXX:
+This is the repo for the paper **A foundation model for generalizable cancer diagnosis and survival prediction from histopathological images** led by ZhaochangYang and TingWei:
 
 - BEPH is pre-trained on 11 million histopathological images  from TCGA with self-supervised learning
 - BEPH has been validated in multiple cancer detection  and survival prediction tasks
