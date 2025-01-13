@@ -160,7 +160,7 @@ Train Command:
 bash ./tools/benchmarks/classification/mim_dist_train.sh  ./FineTuning/beit.py  ./BEPH_backbone.pth
 ```
 
-For evaluation (download data and model checkpoints [here](https://github.com/rmaphoh/RETFound_MAE/blob/main/BENCHMARK.md); change the path below):
+For evaluation (download data and model checkpoints [here](https://drive.google.com/file/d/19Fu3dw3G4i2gPXijzrxfaQ2D_xcqNdNz/view?usp=sharing); change the path below):
 
 ```
 bash ./tools/benchmarks/classification/mim_dist_test.sh   ./FineTuning/beit.py ./work_dir/epoch_x.pth
