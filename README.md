@@ -5,7 +5,7 @@ Official repo for [BEPH](https://github.com/Zhcyoung/BEPH/), which is based on [
 
 *It is worth noting that the BEiT implementation we use comes from mmselfsup[https://github.com/open-mmlab/mmselfsup].
 
-<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/overflow2.jpg" alt="overflow2" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/figure1.png?token=ANBYQI6OWPMWOY7HT7WPN6LHZ72WM" alt="overflow2" style="zoom: 50%;" />
 
 ## Key Features
 
@@ -340,3 +340,23 @@ python ./survival/eval_survival.py --data_root_dir DATA_DIRECTORY/ \
 --results_dir ./RESULTS/tcga_crc_survival/test
 
 ```
+
+## Reference
+
+If you find our work useful in your research or if you use parts of this code please consider citing our [paper](https://www.nature.com/articles/s41467-025-57587-y):
+
+Yang, Z., Wei, T., Liang, Y. *et al.* A foundation model for generalizable cancer diagnosis and survival prediction from histopathological images. *Nat Commun* **16**, 2366 (2025). https://doi.org/10.1038/s41467-025-57587-y
+
+```
+@article{yang_foundation_2025,
+	title = {A foundation model for generalizable cancer diagnosis and survival prediction from histopathological images},
+	author = {Yang, Zhaochang and Wei, Ting and Liang, Ying and Yuan, Xin and Gao, RuiTian and Xia, Yujia and Zhou, Jie and Zhang, Yue and Yu, Zhangsheng},
+	url = {https://doi.org/10.1038/s41467-025-57587-y},
+	journal = {Nature Communications},
+	year = {2025},
+}
+
+```
+
+
+
