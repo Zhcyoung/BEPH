@@ -5,7 +5,7 @@ Official repo for [BEPH](https://github.com/Zhcyoung/BEPH/), which is based on [
 
 *It is worth noting that the BEiT implementation we use comes from mmselfsup[https://github.com/open-mmlab/mmselfsup].
 
-<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/figure1.png?token=ANBYQI6OWPMWOY7HT7WPN6LHZ72WM" alt="overflow2" style="zoom: 50%;" />
+<img src="[https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/figure1.png?token=ANBYQI6OWPMWOY7HT7WPN6LHZ72WM](https://github.com/Zhcyoung/Image_hosting_service/blob/main/figure1.png)" alt="overflow2" style="zoom: 50%;" />
 
 ## Key Features
 
