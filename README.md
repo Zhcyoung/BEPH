@@ -59,7 +59,7 @@ We downloaded diagnostic whole-slide images (WSIs) for 32 cancer types using [th
 
 
 
-<img src="https://raw.githubusercontent.com/Zhcyoung/Image_hosting_service/main/%E9%87%87%E6%A0%B72.png" alt="采样2" style="zoom: 1%;" />
+<img src="https://github.com/Zhcyoung/Image_hosting_service/blob/main/采样2.png" alt="采样2" style="zoom: 1%;" />
 
 For pre-training,each cancer type is organized as its own folder in `TCGA_ROOT_DIR`, which additionally contains the following subfolders: 
 
@@ -157,7 +157,7 @@ Train.txt /val.txt
 Train Command:
 
 ```
-bash ./tools/benchmarks/classification/mim_dist_train.sh  ./FineTuning/beit.py  ./BEPH_backbone.pth
+bash ./tools/benchmarks/classification/mim_dist_train.sh  ./mmselfsup/FineTuning/beitv2/beitv2-30e_2000patch_cancer.py  ./BEPH_backbone.pth
 ```
 
 For evaluation (download data and model checkpoints [here](https://drive.google.com/file/d/19Fu3dw3G4i2gPXijzrxfaQ2D_xcqNdNz/view?usp=sharing); change the path below):
