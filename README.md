@@ -163,7 +163,7 @@ bash ./tools/benchmarks/classification/mim_dist_train.sh  ./mmselfsup/FineTuning
 For evaluation (download data and model checkpoints [here](https://drive.google.com/file/d/19Fu3dw3G4i2gPXijzrxfaQ2D_xcqNdNz/view?usp=sharing); change the path below):
 
 ```
-bash ./tools/benchmarks/classification/mim_dist_test.sh   ./FineTuning/beit.py ./work_dir/epoch_x.pth
+bash ./tools/benchmarks/classification/mim_dist_test.sh   ./mmselfsup/FineTuning/beitv2/beitv2-30e_2000patch_cancer.py ./work_dir/epoch_x.pth
 ```
 
 wsi level tasks:
